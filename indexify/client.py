@@ -605,3 +605,8 @@ class IndexifyClient:
         if error.status == "SearchError":
             indexes = [index["name"] for index in self.indexes()]
             print(f"Available indexes: {indexes}")
+
+        if error.status == "SQLQueryError":
+            schemas = self.list_schemas().get("schemas")
+            tables = [schema.get("extraction_graph_name") for schema in schemas]
+            print(f"Available schemas: {tables}")

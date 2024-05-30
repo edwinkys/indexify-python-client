@@ -15,6 +15,8 @@ class Error(Exception):
             status = "ExtractionGraphError"
         elif "search" in url:
             status = "SearchError"
+        elif "sql_query" in url:
+            status = "SQLQueryError"
 
         error = Error(status, message)
         return error
