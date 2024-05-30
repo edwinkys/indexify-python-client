@@ -129,7 +129,7 @@ class IndexifyClient:
             response = self._client.request(method, timeout=self._timeout, **kwargs)
             status_code = str(response.status_code)
             if status_code.startswith("4") or status_code.startswith("5"):
-                error = Error.from_tonic_error_string(str(response.url), response.text)
+                error = Error.parse_error(str(response.url), response.text)
                 self.__print_additional_error_context(error)
                 raise error
         except httpx.ConnectError:
